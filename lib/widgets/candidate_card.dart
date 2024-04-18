@@ -14,7 +14,18 @@ class CandidateCard extends StatelessWidget {
           backgroundImage: AssetImage(candidate.imageUrl),
         ),
         title: Text(candidate.name),
-        subtitle: Text(candidate.description),
+        subtitle: Text(candidate.role),
+        trailing: ElevatedButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Connected successfully'),
+                duration: Duration(seconds: 2),
+              ),
+            );
+          },
+          child: Text('Connect'),
+        ),
       ),
     );
   }
