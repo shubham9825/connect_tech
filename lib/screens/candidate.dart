@@ -33,13 +33,20 @@ class CandidatesScreen extends StatelessWidget {
         itemCount: candidates.length,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () {
-              Navigator.push(
+            onTap: () async {
+              // Navigate to CandidateDetailScreen and wait for result
+              final result = await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => CandidateDetailScreen(candidate: candidates[index]),
                 ),
               );
+
+              // Check if result is not null and is of type Candidate
+              if (result != null && result is Candidate) {
+                // Pass the connected candidate's data back to HomeScreen
+                Navigator.pop(context, result);
+              }
             },
             child: CandidateCard(candidate: candidates[index]),
           );
