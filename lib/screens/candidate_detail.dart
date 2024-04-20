@@ -23,9 +23,12 @@ class CandidateDetailScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    radius: 80,
-                    backgroundImage: AssetImage(candidate.imageUrl),
+                  Hero(
+                    tag: 'candidate_image_${candidate.name}',
+                    child: CircleAvatar(
+                      radius: 80,
+                      backgroundImage: AssetImage(candidate.imageUrl),
+                    ),
                   ),
                   SizedBox(height: 20),
                   Text(
