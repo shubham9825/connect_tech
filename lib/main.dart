@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:connect_tech/screens/home_screen.dart';
 import 'package:connect_tech/screens/candidate.dart';
-import 'package:connect_tech/screens/job_listings.dart'; // Import the JobListingsScreen
+import 'package:connect_tech/screens/job_listings.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       home: HomeScreen(connectedCandidates: []),
       routes: {
         '/candidates': (context) => CandidatesScreen(),
-        '/joblistings': (context) => JobListingsScreen(), // Add route for job listings screen
+        '/joblistings': (context) => JobListingsScreen(),
       },
     );
   }
