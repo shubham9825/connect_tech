@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:connect_tech/models/JobListing.dart'; // Import the JobListing model
+import 'package:connect_tech/models/JobListing.dart';
 
 class JobDetailScreen extends StatelessWidget {
   final JobListing jobListing;
@@ -27,10 +27,12 @@ class JobDetailScreen extends StatelessWidget {
             Text(
               jobListing.title,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
             ),
             Text(
               jobListing.company,
               style: TextStyle(fontSize: 18, color: Colors.grey),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
             Text(
@@ -43,16 +45,32 @@ class JobDetailScreen extends StatelessWidget {
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Connected successfully!'),
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-              },
-              child: Text('Connect'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Applied Successfully through your Resume!'),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  },
+                  child: Text('Apply Through Resume'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Successfully Applied through the portal'),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  },
+                  child: Text('Apply through Our Recruitment Portal'),
+                ),
+              ],
             ),
           ],
         ),

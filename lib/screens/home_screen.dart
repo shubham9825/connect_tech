@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import '../models/candidate.dart'; // Import the Candidate model
-import 'candidate.dart'; // Import the CandidatesScreen
-import 'candidate_detail.dart'; // Import the CandidateDetailScreen
-import 'job_detail.dart';
+import '../models/candidate.dart';
+import 'candidate.dart';
+import 'candidate_detail.dart';
 import 'job_listings.dart';
-import '../models/JobListing.dart'; // Import the Candidate model
+import 'create_post_screen.dart';
+import 'post_page.dart';
+
 
 class HomeScreen extends StatefulWidget {
   final List<Candidate> connectedCandidates;
@@ -23,9 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('Home'),
         actions: [
           IconButton(
-            icon: Icon(Icons.people), // Icon for navigating to CandidatesScreen
+            icon: Icon(Icons.people),
             onPressed: () {
-              // Navigate to CandidatesScreen
+
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => CandidatesScreen()),
@@ -53,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ListTile(
               title: Text('Candidates'),
               onTap: () {
-                // Navigate to CandidatesScreen
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => CandidatesScreen()),
@@ -62,27 +63,36 @@ class _HomeScreenState extends State<HomeScreen> {
             ),ListTile(
               title: Text('Posts'),
               onTap: () {
-                // Navigate to CandidatesScreen
+
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CandidatesScreen()),
+                  MaterialPageRoute(builder: (context) => PostPage()),
                 );
               },
             ),ListTile(
               title: Text('Job Listing'),
               onTap: () {
-                // Navigate to JobDetailScreen
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => JobListingsScreen()),
                 );
               },
+            ),ListTile(
+              title: Text('Add Job to Portal'),
+              onTap: () {
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CreatePostScreen()),
+                );
+              },
             ),
-            // Add more list items for other screens if needed
+
           ],
         ),
       ),
-      backgroundColor: Colors.grey[200], // Set background color
+      backgroundColor: Colors.grey[200],
       body: widget.connectedCandidates.isEmpty
           ? Center(
         child: Text(
@@ -95,11 +105,11 @@ class _HomeScreenState extends State<HomeScreen> {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(
-                vertical: 8.0, horizontal: 16.0), // Add padding
+                vertical: 8.0, horizontal: 16.0),
             child: Card(
-              elevation: 3, // Add elevation for a raised effect
+              elevation: 3,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0), // Add rounded corners
+                borderRadius: BorderRadius.circular(10.0),
               ),
               child: ListTile(
                 title: Text(widget.connectedCandidates[index].name),
@@ -109,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       widget.connectedCandidates[index].imageUrl),
                 ),
                 onTap: () {
-                  // Navigate to candidate detail screen
+
                   _navigateToCandidateDetailScreen(widget.connectedCandidates[index]);
                 },
               ),
@@ -128,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (result != null && result is Candidate) {
       setState(() {
-        // Add the connected candidate to the list if it doesn't already exist
+
         if (!widget.connectedCandidates.contains(result)) {
           widget.connectedCandidates.add(result);
         }

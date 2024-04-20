@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:connect_tech/screens/home_screen.dart';
 import 'package:connect_tech/screens/candidate.dart';
+import 'package:connect_tech/screens/job_listings.dart'; // Import the JobListingsScreen
 
 void main() {
   runApp(MyApp());
@@ -13,9 +15,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainScreen(),
+      home: HomeScreen(connectedCandidates: []),
       routes: {
         '/candidates': (context) => CandidatesScreen(),
+        '/joblistings': (context) => JobListingsScreen(), // Add route for job listings screen
       },
     );
   }
@@ -28,29 +31,33 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Main Screen'),
       ),
-      drawer: Container(
-        color: Color(0xFFFCFCFC),
-        child: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              const DrawerHeader(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/logo.png'),
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                  child: null
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('images/logo.png'),
+                  fit: BoxFit.contain,
+                ),
               ),
-              ListTile(
-                title: Text('Candidates'),
-                onTap: () {
-                  Navigator.pushNamed(context, '/candidates');
-                },
-              ),
-            ],
-          ),
+              child: null,
+            ),
+            ListTile(
+              title: Text('Candidates'),
+              onTap: () {
+                Navigator.pushNamed(context, '/candidates');
+              },
+            ),
+            ListTile(
+              title: Text('JobListings'),
+              onTap: () {
+             //   Navigator.pushNamed(context, '/joblistings');
+              },
+            ),
+
+          ],
         ),
       ),
       body: const Center(
